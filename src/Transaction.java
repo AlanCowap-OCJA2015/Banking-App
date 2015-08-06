@@ -1,9 +1,9 @@
 public class Transaction{
 	
-	private String description;
-	private double amount;
-	private static int currentSequence;
-	private int sequence;
+	String description;
+	double amount;
+	static int currentSequence;
+	int sequence;
 
 	public Transaction(String description, double amount){
 

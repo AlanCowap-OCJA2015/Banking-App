@@ -1,1 +1,1 @@
-java -cp ..\bin BankApp
+start java -cp ..\bin BankApp

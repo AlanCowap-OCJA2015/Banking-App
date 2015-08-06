@@ -1,1 +1,1 @@
-javac -d ..\bin -cp ,,\bin *.java
+javac -d ..\bin -cp ..\bin *.java
