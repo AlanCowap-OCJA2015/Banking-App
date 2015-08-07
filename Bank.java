@@ -124,15 +124,22 @@ public class Bank{
 
 	public void loadCustomers(){
 
+		accounts.clear();
 		try{
 			ArrayList<Customer> custs = new ArrayList<Customer>();
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream("customers.txt"));
 			
 			for(int i = 0; i < 200; i++){
 				Customer c = (Customer)ois.readObject();
+				for(Account a: c.getAccounts()){
+	
+					accounts.add(a);
+
+				}
 				custs.add(c);
 			}
 			customers = custs;
+
 		}catch(Exception e){
 			e.printStackTrace();
 		}
