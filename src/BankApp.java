@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Random;
+import java.io.*;
 
 public class BankApp {
 
@@ -29,6 +30,8 @@ public class BankApp {
 				case 1: listCustomersWithAccounts(); break;
 				case 2: listAccountsWithCustomers(); break;
 				case 3:	auditAccounts(); break;
+				case 4:	saveToFile(); break;
+				case 5:	loadFromFile(); break;
 			}
 		}
 	}
@@ -43,10 +46,13 @@ public class BankApp {
 		System.out.println("`-------------------------'");
 		System.out.println("  Please enter the number for the option you want and press ENTER");
 		System.out.println();
-		System.out.println("  0.  Exit Program");
 		System.out.println("  1.  List customer database with their accounts");
 		System.out.println("  2.  List accounts database with their customers");
 		System.out.println("  3.  Audit the database");
+		System.out.println("  4.  Save database");
+		System.out.println("  5.  Load database");
+		System.out.println();
+		System.out.println("  0.  Exit Program");
 		System.out.println();
 
 		while (true) {
@@ -57,6 +63,8 @@ public class BankApp {
 					case 1: return 1;
 					case 2: return 2;
 					case 3: return 3;
+					case 4: return 4;
+					case 5: return 5;
 				}
 			} catch (Exception e) {
 			}
@@ -187,5 +195,72 @@ public class BankApp {
 		}
 		System.out.println("------------------------------------------------------------------------\n");
 	}
+
+
+	/*
+	 * Save the data to a file
+	 */
+	public void saveToFile() {
+
+    	// Serialise the accounts
+    	try {
+    		FileOutputStream fileOut = new FileOutputStream("accounts.ser");
+    		ObjectOutputStream out = new ObjectOutputStream (fileOut);
+
+    		out.writeObject(accounts);
+    		out.close();
+    		fileOut.close();
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
+
+    	// Serialise the customers
+    	try {
+    		FileOutputStream fileOut = new FileOutputStream("customers.ser");
+    		ObjectOutputStream out = new ObjectOutputStream (fileOut);
+
+    		out.writeObject(customers);
+    		out.close();
+    		fileOut.close();
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
+
+	}
+
+	/*
+	 * Load the data from a file
+	 */
+	public void loadFromFile() {
+
+		accounts = new ArrayList<Account>();
+		customers = new ArrayList<Customer>();
+
+    	// Deserialise the accounts
+    	try {
+    		FileInputStream fileIn = new FileInputStream("accounts.ser");
+    		ObjectInputStream in = new ObjectInputStream (fileIn);
+			accounts = (ArrayList<Account>) in.readObject();
+    		in.close();
+    		fileIn.close();
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	} catch (ClassNotFoundException c) {
+    	}
+
+    	// Deserialise the customers
+    	try {
+    		FileInputStream fileIn = new FileInputStream("customers.ser");
+    		ObjectInputStream in = new ObjectInputStream (fileIn);
+			customers = (ArrayList<Customer>) in.readObject();
+    		in.close();
+    		fileIn.close();
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	} catch (ClassNotFoundException c) {
+    	}
+
+	}
+
 
 }

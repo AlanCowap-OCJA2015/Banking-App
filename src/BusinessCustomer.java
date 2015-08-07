@@ -29,4 +29,7 @@ public class BusinessCustomer extends Customer{
 		return "Business Customer: " + super.toString() + "\n       VAT number: " + this.vatNumber + ", Tax clearance cert: " + (this.hasTaxCert ? "Y" : "N");
 	}
 
+	public String exportData() {
+		return this.name + "\t" + this.address + "\t" + this.phoneNumber + "\t" + this.vatNumber + "\t" + this.hasTaxCert;
+	}
 }

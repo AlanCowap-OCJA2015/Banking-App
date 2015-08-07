@@ -27,5 +27,8 @@ public class PersonalCustomer extends Customer {
 		return "Personal Customer: " + super.toString() + "\n  Date of birth: " + this.dateOfBirth + ", PPSN: " + this.ppsNumber;
 	}
 
+	public String exportData() {
+		return this.name + "\t" + this.address + "\t" + this.phoneNumber + "\t" + this.dateOfBirth + "\t" + this.ppsNumber;
+	}
 }
 

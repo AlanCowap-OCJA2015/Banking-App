@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.ArrayList;
 
-public abstract class Account {
+public abstract class Account implements java.io.Serializable {
 
 	public int accountNumber;
 	ArrayList<Transaction> transactions = new ArrayList <Transaction>();
@@ -23,9 +23,6 @@ public abstract class Account {
 		this.balance = (rnd.nextInt(20000000) - 10000000) / 100;
 	}
 
-	public void audit(){
-	
-	}
 
 	public String toString () {
 		return "A/c: " + String.format("%08d, Bal: % 10.2f", this.accountNumber, this.balance);

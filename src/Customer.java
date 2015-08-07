@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.ArrayList;
 
-public class Customer{
+public class Customer implements java.io.Serializable {
 
 	public String name;
 	public String address;
@@ -27,6 +27,10 @@ public class Customer{
 		
 	public String toString () {
 		return this.name + ", " + this.address + " (" + this.phoneNumber + ")";
+	}
+
+	public String exportData() {
+		return this.name + "\t" + this.address + "\t" + this.phoneNumber;
 	}
 		
 }
